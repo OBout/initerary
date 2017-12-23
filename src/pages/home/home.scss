@@ -1,3 +1,36 @@
 page-home {
+  .bar0 {
+    background-color: #bbb;
+  }
+  .bar1 {
+    background-color: #ccc;
+  }
+  .bar2 {
+    background-color: #ddd;
+  }
+  .bar3 {
+    background-color: #eee;
+  }
+  .subheader {
+    color: #666;
+  }
+  .parter {
+    background-color: #999999;
+  }
+  .ion-col {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #000;
+  }
 
+  .overviewcol4_header, .overviewcol3_header, .overviewcol2_header, .overviewcol1_header {
+    font-weight: bold;
+    font-size: 12px;    
+  }
+  .overviewcol4, .overviewcol3, .overviewcol2 {
+    font-size: 12px;
+  }
+  .overviewcol1 {
+    font-size: 10px;
+  }
 }
