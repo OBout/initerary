@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Bewerken
+    </ion-title>
+    <page-login></page-login>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+  <ion-row class="editheader">
+    <ion-col col-3>
+      Date
+    </ion-col>
+    <ion-col col-6>
+      Activiteit
+    </ion-col>
+    <ion-col col-1>
+      &nbsp;
+    </ion-col>
+  </ion-row>
+</div>
+  <div *ngFor="let day of days | async; let i = index" class="dayrow">
+    <ion-row>
+      <ion-col col-3>
+       {{day.Date}}
+      </ion-col>
+      <ion-col col-6>
+        {{day.Activity}}
+      </ion-col>
+      <ion-col col-1>
+        <ion-icon (click)="edit(day, i)" name="construct" color="primary"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-list class="bar1" [hidden]="daySelected()!==i">
+      <ion-item>
+        <button ion-button (click)="cancel()" color="danger">Cancel</button>
+        <button ion-button (click)="save(edit_day)" item-right color="secondary">Save</button>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">Date</ion-label>
+        <ion-input type="text" disabled [(ngModel)]="edit_day.Date"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Activiteit</ion-label>
+        <ion-input type="text" [(ngModel)]="edit_day.Activity"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Departure</ion-label>
+        <ion-input type="text" [(ngModel)]="edit_day.Departure"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Destination</ion-label>
+        <ion-input type="text" [(ngModel)]="edit_day.Destination"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">StartTime</ion-label>
+        <ion-input type="text" [(ngModel)]="edit_day.StartTime"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">EndTime</ion-label>
+        <ion-input type="text" [(ngModel)]="edit_day.EndTime"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">ExtraInfo</ion-label>
+        <ion-textarea type="text" [(ngModel)]="edit_day.ExtraInfo"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Booking</ion-label>
+        <ion-input type="text" [(ngModel)]="edit_day.Booking"></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button (click)="cancel()" color="danger">Cancel</button>
+        <button ion-button (click)="save(edit_day)" item-right color="secondary">Save</button>
+      </ion-item>
+    </ion-list>
+
+  </div>
+</ion-content>
