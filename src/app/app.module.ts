@@ -8,12 +8,14 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../directives/login/login';
+import { NewDay } from '../pages/edit/modals/newDay';
+
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation'
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDEQObnRPUgSmUO8jAunBvNxhg7Vue-Gpg",
@@ -31,12 +33,15 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    NewDay
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    FormsModule,
+    CustomFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,14 +50,13 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    NewDay
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     AngularFireAuth,
     AngularFireDatabase
   ]
 })
-export class AppModule {}
+export class AppModule { }

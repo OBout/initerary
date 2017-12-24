@@ -25,13 +25,13 @@ export class HomePage {
     this.days = this
       .db
       .list('/Itinerary');
-    this
-      .days
-      .subscribe((response) => {
-        console.log('response', response);
-      }, (error) => {
-        console.log('error', error);
-      });
+    // this
+    //   .days
+    //   .subscribe((response) => {
+    //     console.log('response', response);
+    //   }, (error) => {
+    //     console.log('error', error);
+    //   });
   }
 
   selectDay(i : number) {

@@ -1,8 +1,10 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {AngularFireModule} from 'angularfire2';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-import {AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { ModalController, NavParams } from 'ionic-angular';
+import { NewDay } from './modals/newDay';
 
 const default_day = {
   "Id": 0,
@@ -17,14 +19,14 @@ const default_day = {
   "StartTime": ""
 };
 
-@Component({selector: 'page-edit', templateUrl: 'edit.html'})
+@Component({ selector: 'page-edit', templateUrl: 'edit.html' })
 export class EditPage {
 
-  days : FirebaseListObservable < any[] >;
-  select_day : number = -1;
-  edit_day : any = default_day;
+  days: FirebaseListObservable<any[]>;
+  select_day: number = -1;
+  edit_day: any = default_day;
 
-  constructor(public navCtrl : NavController, private db : AngularFireDatabase) {
+  constructor(public navCtrl: NavController, private db: AngularFireDatabase, public modalCtrl: ModalController) {
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyDEQObnRPUgSmUO8jAunBvNxhg7Vue-Gpg",
@@ -38,13 +40,13 @@ export class EditPage {
     this.days = this
       .db
       .list('/Itinerary');
-    this
-      .days
-      .subscribe((response) => {
-        console.log('response', response);
-      }, (error) => {
-        console.log('error', error);
-      });
+    // this
+    //   .days
+    //   .subscribe((response) => {
+    //     console.log('response', response);
+    //   }, (error) => {
+    //     console.log('error', error);
+    //   });
   }
 
   cancel() {
@@ -52,13 +54,13 @@ export class EditPage {
     this.edit_day = default_day;
   }
 
-  selectDay(i : number) {
+  selectDay(i: number) {
     this.select_day = i;
   }
 
-  daySelected() : any {return this.select_day;}
+  daySelected(): any { return this.select_day; }
 
-  edit(day : any, i : number) {
+  edit(day: any, i: number) {
 
     let conf = confirm('Weet je zeker dat je dit onderdeel wilt wijzigen?');
 
@@ -99,8 +101,39 @@ export class EditPage {
   }
 
   new() {
-    console.log('new');
-    alert('not yet possibe');
+
+    let dater = new Date();
+    let contactModal = this.modalCtrl.create(NewDay,
+      {
+        year: dater.getFullYear(),
+        month: dater.getMonth() + 1,
+        day: dater.getDate(),
+        hour: dater.getHours(),
+        minute: dater.getMinutes()
+      }
+    );
+    contactModal.onDidDismiss(data => {
+      console.log('dismissed data', data);
+
+      if (data) {
+        if (data !== {}) {
+          let newday = default_day;
+          newday.Date = data.day + '-' + data.month + '-' + data.year;
+          newday.StartTime = data.hour + ':' + data.minute;
+          newday.DateOrder = parseFloat(('0000' + data.year).slice(-4) + ('00' + data.month).slice(-2) + ('00' + data.day).slice(-2) + ('00' + data.hour).slice(-2) + ('00' + data.minute).slice(-2));
+          console.log('newday', newday);
+          let yesR = confirm('Wilt u een nieuwe dag maken met datum ' + newday.Date + ' om ' + newday.StartTime + ' uur?')
+          if (yesR === true) {
+            this.days.push(newday);
+            console.log('new');
+            alert('opgeslagen');
+          } else {
+            console.log('cancelled');
+          }
+        }
+      }
+    });
+    contactModal.present();
   }
 
 }

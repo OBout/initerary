@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Nieuw item
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <p *ngIf="field.errors?.rangeLength">Incorrecte invoer</p>
+    <ion-row>
+        <ion-col ion-item>
+            <ion-label floating>
+                Day
+            </ion-label>
+            <ion-input type="number" [(ngModel)]="day" name="day" #field="ngModel" [range]="[1,31]"></ion-input>
+        </ion-col>
+        <ion-col ion-item>
+            <ion-label floating>
+                Month
+            </ion-label>
+            <ion-input type="number" [(ngModel)]="month" name="month" #field="ngModel" [range]="[1,12]"></ion-input>
+        </ion-col>
+        <ion-col ion-item>
+            <ion-label floating>
+                Year
+            </ion-label>
+            <ion-input type="number" [(ngModel)]="year" name="year" #field="ngModel" [range]="[1900,2100]"></ion-input>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col ion-item>
+            <ion-label floating>
+                Hour
+            </ion-label>
+            <ion-input type="number" [(ngModel)]="hour" name="hour" #field="ngModel" [range]="[0,23]"></ion-input>
+        </ion-col>
+        <ion-col ion-item>
+            <ion-label floating>
+                Minute
+            </ion-label>
+            <ion-input type="number" [(ngModel)]="minute" name="minute" #field="ngModel" [range]="[0,59]"></ion-input>
+        </ion-col>
+    </ion-row>
+    <ion-item>
+        <button ion-button color="danger" (click)="dismiss()" item-left>Annuleren</button>
+        <button ion-button color="secondary" [hidden]="field.errors?.rangeLength" (click)="correct()" item-right>Save</button>
+    </ion-item>
+
+</ion-content>

@@ -1,6 +1,9 @@
 page-edit {
   .editrow {
     margin-top: 15px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 15px;
   }
   .bar1 {
     background-color: #ccc;
@@ -25,4 +28,13 @@ page-edit {
   .editheader{
     font-weight: bold;
   }
+  .dayrow {
+    height: 36px;
+    border-top: solid 1px #ddd;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  // .item {
+  //   padding-left: 0px !important;
+  // }
 }
