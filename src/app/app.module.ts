@@ -13,6 +13,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../directives/login/login';
 import { NewDay } from '../pages/edit/modals/newDay';
+import { NewContact } from '../pages/contact/modals/newContact';
 
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation'
@@ -34,7 +35,8 @@ export const firebaseConfig = {
     HomePage,
     TabsPage,
     LoginPage,
-    NewDay
+    NewDay,
+    NewContact
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ export const firebaseConfig = {
     HomePage,
     TabsPage,
     LoginPage,
-    NewDay
+    NewDay,
+    NewContact
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },

@@ -3,15 +3,22 @@
     <ion-title>
       Contact
     </ion-title>
+    <page-login></page-login>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+    <ion-list-header>
+      Contacts
+    </ion-list-header>
+    <a ion-item *ngFor="let contact of contacts | async; let i = index" href="{{linkText(contact)}}">
+      <ion-icon name="{{contactIcon(contact.Type)}}" item-start></ion-icon>
+      <ion-label>{{contact.Name}}</ion-label>
+    </a>
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <button ion-button (click)="new()" item-end>
+        <ion-icon name="add" item-right></ion-icon> Nieuw</button>
     </ion-item>
   </ion-list>
 </ion-content>

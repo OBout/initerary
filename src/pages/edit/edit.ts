@@ -62,7 +62,7 @@ export class EditPage {
 
   edit(day: any, i: number) {
 
-    let conf = confirm('Weet je zeker dat je dit onderdeel wilt wijzigen?');
+    let conf = confirm('Weet je zeker dat je dit onderdeel "' + day.Date + '" wilt wijzigen?');
 
     if (conf == true) {
       this.edit_day = day;
@@ -75,7 +75,7 @@ export class EditPage {
   }
 
   save() {
-    let conf = confirm('Weet je zeker dat je dit onderdeel wilt wijzigen?');
+    let conf = confirm('Weet je zeker dat je dit onderdeel "' + this.edit_day.Date + '" wilt wijzigen?');
 
     if (conf == true) {
       try {
