@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Nieuw item
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-row>
+        <ion-col ion-item>
+            <ion-label floating>
+                Naam
+            </ion-label>
+            <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col ion-item>
+            <ion-label floating>
+                Waarde
+            </ion-label>
+            <ion-input type="text" [(ngModel)]="val" name="val"></ion-input>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col ion-item>
+            <ion-label>Soort</ion-label>
+            <ion-select [(ngModel)]="type">
+                <ion-option value="whatsapp">Whatsapp</ion-option>
+                <ion-option value="tel">Telefoon</ion-option>
+                <ion-option value="email">Email</ion-option>
+                <ion-option value="www">Webite</ion-option>
+            </ion-select>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col ion-item>
+            <ion-label floating>
+                Extra Informatie
+            </ion-label>
+            <ion-input type="text" [(ngModel)]="info" name="info"></ion-input>
+        </ion-col>
+    </ion-row>
+    <ion-item>
+        <button ion-button color="danger" (click)="dismiss()" item-left>Annuleren</button>
+        <button ion-button color="secondary" (click)="correct()" item-right>Save</button>
+    </ion-item>
+
+</ion-content>
