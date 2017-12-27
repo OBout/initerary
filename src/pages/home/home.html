@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-row [hidden]="daySelected()===i" (click)="selectDay(i)">
+      <ion-row>
         <ion-col col-2 class="overviewcol1_header">
           Datum
         </ion-col>
@@ -23,7 +23,7 @@
       </ion-row>
     </ion-item>
     <ion-item *ngFor="let day of days | async; let i = index" class="dayrow">
-      <ion-row [hidden]="daySelected()===i" (click)="selectDay(i)">
+      <ion-row (click)="selectDay(day, i)">
         <ion-col col-2 class="overviewcol1">
           {{day.Date}}
         </ion-col>
@@ -35,71 +35,6 @@
         </ion-col>
         <ion-col col-3 class="overviewcol4">
           {{day.Destination}}
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="bar0" [hidden]="daySelected()!==i">
-        <ion-col col-6>
-          <span class="subheader">Datum</span>
-        </ion-col>
-        <ion-col col-3>
-          <span class="subheader">Start</span>
-        </ion-col>
-        <ion-col col-3>
-          <span class="subheader">Eind</span>
-        </ion-col>
-      </ion-row>
-      <ion-row class="bar0" [hidden]="daySelected()!==i">
-        <ion-col col-6>
-          {{day.Date}}
-        </ion-col>
-        <ion-col col-3>
-          {{day.StartTime}}
-        </ion-col>
-        <ion-col col-3>
-          {{day.EndTime}}
-        </ion-col>
-      </ion-row>
-      <ion-row class="bar1" [hidden]="daySelected()!==i">
-        <ion-col col-6>
-          <span class="subheader">Activiteit</span>
-        </ion-col>
-      </ion-row>
-      <ion-row class="bar1" [hidden]="daySelected()!==i">
-        <ion-col>
-          {{day.Activity}}
-        </ion-col>
-      </ion-row>
-      <ion-row class="bar2" [hidden]="daySelected()!==i">
-        <ion-col col-6>
-          <span class="subheader">Vertrek</span>
-        </ion-col>
-        <ion-col col-6>
-          <span class="subheader">Bestemming</span>
-        </ion-col>
-      </ion-row>
-      <ion-row class="bar2" [hidden]="daySelected()!==i">
-        <ion-col col-6>
-          {{day.Departure}}
-        </ion-col>
-        <ion-col col-6>
-          {{day.Destination}}
-        </ion-col>
-      </ion-row>
-      <ion-row class="bar3" [hidden]="daySelected()!==i">
-        <ion-col col-9>
-          <span class="subheader">Extra Info</span>
-        </ion-col>
-        <ion-col col-3>
-          <span class="subheader">Boeking #</span>
-        </ion-col>
-      </ion-row>
-      <ion-row class="bar3" [hidden]="daySelected()!==i">
-        <ion-col col-9>
-          {{day.ExtraInfo}}
-        </ion-col>
-        <ion-col col-3>
-          {{day.Booking}}
         </ion-col>
       </ion-row>
     </ion-item>

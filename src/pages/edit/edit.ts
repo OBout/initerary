@@ -49,6 +49,10 @@ export class EditPage {
     //   });
   }
 
+  delete(contact: any): void {
+    console.log('delete', contact);
+  }
+
   cancel() {
     this.select_day = -1;
     this.edit_day = default_day;

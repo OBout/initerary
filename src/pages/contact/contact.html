@@ -12,10 +12,18 @@
     <ion-list-header>
       Contacts
     </ion-list-header>
-    <a ion-item *ngFor="let contact of contacts | async; let i = index" href="{{linkText(contact)}}">
-      <ion-icon name="{{contactIcon(contact.Type)}}" item-start></ion-icon>
-      <ion-label>{{contact.Name}}</ion-label>
-    </a>
+    <ion-item-sliding *ngFor="let contact of contacts | async; let i = index">
+      <a ion-item href="{{linkText(contact)}}">
+        <ion-icon name="{{contactIcon(contact.Type)}}" item-start></ion-icon>
+        <ion-label>{{contact.Name}}</ion-label>
+      </a>
+      <ion-item-options side="right" (click)="delete(contact)">
+        <button ion-button color="danger">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
     <ion-item>
       <button ion-button (click)="new()" item-end>
         <ion-icon name="add" item-right></ion-icon> Nieuw</button>

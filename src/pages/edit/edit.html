@@ -8,47 +8,58 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <div [hidden]="daySelected()>-1">
-    <div class="editheader">
+  <ion-list [hidden]="daySelected()>-1">
+    <ion-item class="editheader">
       <ion-row>
         <ion-col col-3>
           Date
         </ion-col>
-        <ion-col col-6>
+        <ion-col col-5>
           Activiteit
         </ion-col>
-        <ion-col col-1>
-          &nbsp;
-        </ion-col>
-      </ion-row>
-    </div>
-    <div *ngFor="let day of days | async; let i = index" class="dayrow">
-      <ion-row>
         <ion-col col-3>
-          {{day.Date}}
+          Departure
         </ion-col>
-        <ion-col col-6>
-          {{day.Activity}}
-        </ion-col>
-        <ion-col col-1>
-          <ion-icon (click)="edit(day, i)" name="construct" color="primary"></ion-icon>
+      </ion-row>
+    </ion-item>
+    <ion-item-sliding *ngFor="let day of days | async; let i = index">
+      <ion-item class="dayrow">
+        <ion-row>
+          <ion-col col-3>
+            {{day.Date}}
+          </ion-col>
+          <ion-col col-5>
+            {{day.Activity}}
+          </ion-col>
+          <ion-col col-3>
+            {{day.Departure}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="edit(day, i)">
+          <ion-icon name="construct"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="danger" (click)="delete(day)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <ion-item>
+      <button ion-button (click)="new()">
+        <ion-icon name="add" item-left></ion-icon> Nieuw</button>
+    </ion-item>
+  </ion-list>
+  <div [hidden]="daySelected()<0">
+    <div class="editheader">
+      <ion-row>
+        <ion-col col-12>
+          Bewerken {{edit_day.Date}}
         </ion-col>
       </ion-row>
     </div>
-    <ion-list>
-        <ion-item>
-          <button ion-button (click)="new()"><ion-icon name="add" item-left></ion-icon> Nieuw</button>
-        </ion-item>
-      </ion-list>
-  </div>
-  <div [hidden]="daySelected()<0">
-      <div class="editheader">
-          <ion-row>
-            <ion-col col-12>
-              Bewerken {{edit_day.Date}}
-            </ion-col>
-          </ion-row>
-        </div>
     <ion-list class="bar1">
       <ion-item>
         <button ion-button (click)="cancel()" color="danger">Cancel</button>

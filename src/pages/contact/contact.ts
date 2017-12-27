@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { ModalController, NavParams } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { NewContact } from './modals/newContact';
 
 
@@ -16,32 +14,28 @@ export class ContactPage {
   contacts: FirebaseListObservable<any[]>;
 
   constructor(public navCtrl: NavController, private db: AngularFireDatabase, public modalCtrl: ModalController) {
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDEQObnRPUgSmUO8jAunBvNxhg7Vue-Gpg",
-      authDomain: "itinerary-oscoweb.firebaseapp.com",
-      databaseURL: "https://itinerary-oscoweb.firebaseio.com",
-      projectId: "itinerary-oscoweb",
-      storageBucket: "itinerary-oscoweb.appspot.com",
-      messagingSenderId: "231837315466"
-    };
 
     this.contacts = this
       .db
       .list('/Contacts');
   }
-
+  
+  delete(contact: any): void {
+    console.log('delete', contact);
+  }
+    
   linkText(contact: any): string {
     let retval = '';
 
     switch (contact.Type) {
       case 'whatsapp':
-        // https://chat.whatsapp.com/invite/8Gl9Gtt4PdI2J654IFkqfB
 
-        if (contact.Val.indexOf('https') !== -1) {
-          retval = contact.Val;
+        let linkValue = contact.Val;
+        linkValue.replace('+', '00');
+        if (linkValue.indexOf('https') !== -1) {
+          retval = linkValue;
         } else {
-          retval = 'https://api.whatsapp.com/send?phone=' + contact.Val;
+          retval = 'https://api.whatsapp.com/send?phone=' + linkValue;
         }
 
         break;
@@ -83,7 +77,6 @@ export class ContactPage {
 
   new() {
 
-    let dater = new Date();
     let contactModal = this.modalCtrl.create(NewContact, {});
     contactModal.onDidDismiss(data => {
       console.log('dismissed data', data);
