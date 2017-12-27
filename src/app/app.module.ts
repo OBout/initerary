@@ -9,8 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../directives/login/login';
 import { NewDay } from '../pages/edit/modals/newDay';
 import { NewContact } from '../pages/contact/modals/newContact';

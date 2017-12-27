@@ -37,17 +37,18 @@ export class ViewDay {
         this.viewCtrl.dismiss();
     }
 
+    swipeEvent(e) {
+        if (e.direction == 2) {
+            this.go(1);
+        } else {
+            this.go(-1);
+        }
+    }
+
     go(i: number) {
 
-        console.log('navigating', i);
-        console.log('this.daynumber', this.daynumber);
-        
-        let maxnav = this.days.length -1;
+        let maxnav = this.days.length - 1;
         let newDayNumber = this.daynumber + i;
-        
-        console.log('maxnav', maxnav);
-        console.log('newDayNumber', newDayNumber);
-        
 
         if (newDayNumber < 0 || newDayNumber > maxnav) {
             console.log('un navigatable');

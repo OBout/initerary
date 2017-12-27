@@ -5,38 +5,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-row>
-        <ion-col col-2 class="overviewcol1_header">
-          Datum
-        </ion-col>
-        <ion-col col-4 class="overviewcol2_header">
-          Activiteit
-        </ion-col>
-        <ion-col col-3 class="overviewcol3_header">
-          Vertrek
-        </ion-col>
-        <ion-col col-3 class="overviewcol4_header">
-          Bestemming
-        </ion-col>
-      </ion-row>
-    </ion-item>
-    <ion-item *ngFor="let day of days | async; let i = index" class="dayrow">
-      <ion-row (click)="selectDay(day, i)">
-        <ion-col col-2 class="overviewcol1">
-          {{day.Date}}
-        </ion-col>
-        <ion-col col-4 class="overviewcol2">
-          {{day.Activity}}
-        </ion-col>
-        <ion-col col-3 class="overviewcol3">
-          {{day.Departure}}
-        </ion-col>
-        <ion-col col-3 class="overviewcol4">
-          {{day.Destination}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
-  </ion-list>
+  <ion-row>
+    <ion-col col-2 class="overviewcol1_header">
+      Datum
+    </ion-col>
+    <ion-col col-4 class="overviewcol2_header">
+      Activiteit
+    </ion-col>
+    <ion-col col-3 class="overviewcol3_header">
+      Vertrek
+    </ion-col>
+    <ion-col col-3 class="overviewcol4_header">
+      Bestemming
+    </ion-col>
+  </ion-row>
+  <ion-row *ngFor="let day of days | async; let i = index ;odd as isOdd; even as isEven" class="dayrow" (click)="selectDay(day, i)"
+    [class.Odd]="isOdd" [class.even]="isEven">
+    <ion-col col-2 class="overviewcol1">
+      {{day.Date}}
+    </ion-col>
+    <ion-col col-4 class="overviewcol2">
+      {{day.Activity}}
+    </ion-col>
+    <ion-col col-3 class="overviewcol3">
+      {{day.Departure}}
+    </ion-col>
+    <ion-col col-3 class="overviewcol4">
+      {{day.Destination}}
+    </ion-col>
+  </ion-row>
 </ion-content>

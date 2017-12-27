@@ -5,36 +5,25 @@ page-edit {
     font-size: 15px;
     margin-bottom: 15px;
   }
-  .bar1 {
-    background-color: #ccc;
-  }
-  .bar2 {
-    background-color: #ddd;
-  }
-  .bar3 {
-    background-color: #eee;
-  }
-  .subheader {
-    color: #666;
-  }
-  .parter {
-    background-color: #999999;
-  }
-  .ion-col {
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-right-color: #000;
-  }
   .editheader{
     font-weight: bold;
+    padding-left: 0px;    
+  }
+  .even {
+    background-color: #e1f4e7;
+  }
+  .odd {
+    background-color: #ffe8dd;
   }
   .dayrow {
-    height: 36px;
-    border-top: solid 1px #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-weight: bold;
     font-size: 15px;
+    padding-left: 0px;
   }
-  // .item {
-  //   padding-left: 0px !important;
-  // }
+  .dayrow .item-inner {
+    border-bottom: 0 !important;
+  }
+
 }

@@ -1,27 +1,4 @@
 page-home {
-  .bar0 {
-    background-color: #bbb;
-  }
-  .bar1 {
-    background-color: #ccc;
-  }
-  .bar2 {
-    background-color: #ddd;
-  }
-  .bar3 {
-    background-color: #eee;
-  }
-  .subheader {
-    color: #666;
-  }
-  .parter {
-    background-color: #999999;
-  }
-  .ion-col {
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-right-color: #000;
-  }
 
   .overviewcol4_header, .overviewcol3_header, .overviewcol2_header, .overviewcol1_header {
     font-weight: bold;
@@ -35,5 +12,15 @@ page-home {
   }
   .item {
     padding-left: 0px !important;
+  }
+  .even {
+    background-color: #e1f4e7;
+  }
+  .odd {
+    background-color: #ffe8dd;
+  }
+  .dayrow {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }

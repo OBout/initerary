@@ -4,7 +4,6 @@
       Bewerken
     </ion-title>
     <page-login></page-login>
-
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -22,9 +21,8 @@
         </ion-col>
       </ion-row>
     </ion-item>
-    <ion-item-sliding *ngFor="let day of days | async; let i = index">
-      <ion-item class="dayrow">
-        <ion-row>
+    <ion-item-sliding *ngFor="let day of days | async; let i = index;odd as isOdd; even as isEven">
+      <ion-row ion-item class="dayrow" [class.Odd]="isOdd" [class.even]="isEven">
           <ion-col col-3>
             {{day.Date}}
           </ion-col>
@@ -35,7 +33,6 @@
             {{day.Departure}}
           </ion-col>
         </ion-row>
-      </ion-item>
       <ion-item-options side="right">
         <button ion-button color="primary" (click)="edit(day, i)">
           <ion-icon name="construct"></ion-icon>
@@ -47,11 +44,12 @@
         </button>
       </ion-item-options>
     </ion-item-sliding>
-    <ion-item>
-      <button ion-button (click)="new()">
-        <ion-icon name="add" item-left></ion-icon> Nieuw</button>
-    </ion-item>
   </ion-list>
+  <button ion-button (click)="new()" [hidden]="daySelected()>-1" full large>
+      <ion-icon name="add"></ion-icon>
+      &nbsp;Nieuw&nbsp;
+      <ion-icon name="add"></ion-icon>      
+    </button>
   <div [hidden]="daySelected()<0">
     <div class="editheader">
       <ion-row>

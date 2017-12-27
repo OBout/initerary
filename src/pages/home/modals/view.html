@@ -6,86 +6,88 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-row class="bar0">
-        <ion-col col-6>
-            <span class="subheader">Datum</span>
-        </ion-col>
-        <ion-col col-3>
-            <span class="subheader">Start</span>
-        </ion-col>
-        <ion-col col-3>
-            <span class="subheader">Eind</span>
-        </ion-col>
-    </ion-row>
-    <ion-row class="bar0">
-        <ion-col col-6>
-            {{day.Date}}
-        </ion-col>
-        <ion-col col-3>
-            {{day.StartTime}}
-        </ion-col>
-        <ion-col col-3>
-            {{day.EndTime}}
-        </ion-col>
-    </ion-row>
-    <ion-row class="bar1">
-        <ion-col col-6>
-            <span class="subheader">Activiteit</span>
-        </ion-col>
-    </ion-row>
-    <ion-row class="bar1">
-        <ion-col>
-            {{day.Activity}}
-        </ion-col>
-    </ion-row>
-    <ion-row class="bar2">
-        <ion-col col-6>
-            <span class="subheader">Vertrek</span>
-        </ion-col>
-        <ion-col col-6>
-            <span class="subheader">Bestemming</span>
-        </ion-col>
-    </ion-row>
-    <ion-row class="bar2">
-        <ion-col col-6>
-            {{day.Departure}}
-        </ion-col>
-        <ion-col col-6>
-            {{day.Destination}}
-        </ion-col>
-    </ion-row>
-    <ion-row class="bar3">
-        <ion-col col-9>
-            <span class="subheader">Extra Info</span>
-        </ion-col>
-        <ion-col col-3>
-            <span class="subheader">Boeking #</span>
-        </ion-col>
-    </ion-row>
-    <ion-row class="bar3">
-        <ion-col col-9>
-            {{day.ExtraInfo}}
-        </ion-col>
-        <ion-col col-3>
-            {{day.Booking}}
-        </ion-col>
-    </ion-row>
-    <ion-grid class="button-group">
-        <ion-row>
-            <ion-col>
-                <button ion-button outline block color="primary" (click)="go(-1)">
-                    <ion-icon name="arrow-back"></ion-icon>
-                </button>
+    <div (swipe)="swipeEvent($event)">
+
+        <ion-row class="bar0">
+            <ion-col col-6>
+                <span class="subheader">Datum</span>
             </ion-col>
-            <ion-col>
-                <button ion-button color="primary" (click)="dismiss()">Back to overview</button>
+            <ion-col col-3>
+                <span class="subheader">Start</span>
             </ion-col>
-            <ion-col>
-                <button ion-button outline block color="primary" click="go(1)">
-                    <ion-icon name="arrow-forward"></ion-icon>
-                </button>
+            <ion-col col-3>
+                <span class="subheader">Eind</span>
             </ion-col>
         </ion-row>
-    </ion-grid>
-
+        <ion-row class="bar0">
+            <ion-col col-6>
+                {{day.Date}}
+            </ion-col>
+            <ion-col col-3>
+                {{day.StartTime}}
+            </ion-col>
+            <ion-col col-3>
+                {{day.EndTime}}
+            </ion-col>
+        </ion-row>
+        <ion-row class="bar1">
+            <ion-col col-6>
+                <span class="subheader">Activiteit</span>
+            </ion-col>
+        </ion-row>
+        <ion-row class="bar1">
+            <ion-col>
+                {{day.Activity}}
+            </ion-col>
+        </ion-row>
+        <ion-row class="bar2">
+            <ion-col col-6>
+                <span class="subheader">Vertrek</span>
+            </ion-col>
+            <ion-col col-6>
+                <span class="subheader">Bestemming</span>
+            </ion-col>
+        </ion-row>
+        <ion-row class="bar2">
+            <ion-col col-6>
+                {{day.Departure}}
+            </ion-col>
+            <ion-col col-6>
+                {{day.Destination}}
+            </ion-col>
+        </ion-row>
+        <ion-row class="bar3">
+            <ion-col col-9>
+                <span class="subheader">Extra Info</span>
+            </ion-col>
+            <ion-col col-3>
+                <span class="subheader">Boeking #</span>
+            </ion-col>
+        </ion-row>
+        <ion-row class="bar3">
+            <ion-col col-9>
+                {{day.ExtraInfo}}
+            </ion-col>
+            <ion-col col-3>
+                {{day.Booking}}
+            </ion-col>
+        </ion-row>
+        <ion-grid class="button-group">
+            <ion-row>
+                <ion-col>
+                    <button ion-button outline block color="primary" (click)="go(-1)">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="primary" (click)="dismiss()">Back to overview</button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button outline block color="primary" (click)="go(1)">
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 </ion-content>

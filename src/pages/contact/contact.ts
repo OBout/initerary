@@ -22,6 +22,12 @@ export class ContactPage {
   
   delete(contact: any): void {
     console.log('delete', contact);
+    let removeR = confirm('Wilt u contact "' + contact.Name + '" verwijderen?');
+    if (removeR === true) {
+      this.contacts.remove(contact);      
+    } else {
+      console.log('delete abortified');
+    }
   }
     
   linkText(contact: any): string {

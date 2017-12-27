@@ -1,10 +1,5 @@
-import { Component} from '@angular/core';
-// import { Component, OnInit } from '@angular/core';
-// import { TranslateService } from '../../services/translate.services';
-// import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
-import {AngularFireModule} from 'angularfire2';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-import {AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth';
+import { Component } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 @Component({ // use component instead of @diractive because we can use templateurl here
@@ -16,8 +11,7 @@ export class LoginPage {
   private isAuthenticated: any;
 
   constructor(
-    private afAuth: AngularFireAuth, 
-    private db: AngularFireDatabase, 
+    private afAuth: AngularFireAuth
   ) {
     this.afAuth.authState.subscribe(auth => {
       this.isAuthenticated = auth;
@@ -61,14 +55,14 @@ export class LoginPage {
 
     console.log('loggin in');
 
-    this.afAuth.auth.signInWithPopup(provider).then((result)=>{
+    this.afAuth.auth.signInWithPopup(provider).then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       let token = result.credential.accessToken;
       // The signed-in user info.
       let user = result.user;
       console.log('logged in with token', token);
       console.log('logged in with user', user);
-    }).catch(function(error: any) {
+    }).catch(function (error: any) {
       // Handle Errors here.
       let errorCode = error.code;
       let errorMessage = error.message;
