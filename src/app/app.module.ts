@@ -15,7 +15,7 @@ import { LoginPage } from '../directives/login/login';
 import { NewDay } from '../pages/edit/modals/newDay';
 import { NewContact } from '../pages/contact/modals/newContact';
 import { ViewDay } from '../pages/home/modals/view';
-
+import { HttpModule, JsonpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation'
 
@@ -45,7 +45,9 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     FormsModule,
-    CustomFormsModule
+    CustomFormsModule,
+    HttpModule,
+    JsonpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,7 +64,7 @@ export const firebaseConfig = {
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AngularFireAuth,
-    AngularFireDatabase
+    AngularFireDatabase,
   ]
 })
 export class AppModule { }

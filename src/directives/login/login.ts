@@ -29,7 +29,7 @@ export class LoginPage {
 
   showUserPhotoIcon() {
 
-    let img_org = 'assets/imgs/user.png';
+    let img_org = 'assets/imgs/userlight.png';
     let img = img_org;
 
     try {

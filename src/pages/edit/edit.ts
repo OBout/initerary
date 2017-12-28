@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { ModalController } from 'ionic-angular';
 import { NewDay } from './modals/newDay';
+import { AlertController } from 'ionic-angular';
 
 const default_day = {
   "Id": 0,
@@ -24,7 +25,7 @@ export class EditPage {
   select_day: number = -1;
   edit_day: any = default_day;
 
-  constructor(public navCtrl: NavController, private db: AngularFireDatabase, public modalCtrl: ModalController) {
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, private db: AngularFireDatabase, public modalCtrl: ModalController) {
     // Initialize Firebase
 
     this.days = this
@@ -34,12 +35,30 @@ export class EditPage {
 
   delete(day: any): void {
     console.log('delete', day);
-    let removeR = confirm('Wilt u dag "' + day.Date + '" verwijderen?');
-    if (removeR === true) {
-      this.days.remove(day);      
-    } else {
-      console.log('delete abortified');
-    }
+    let alert = this.alertCtrl.create({
+      title: 'Remove day',
+      message: 'Wilt u dag "' + day.Date + '" verwijderen?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('delete abortified');
+          }
+        },
+        {
+          text: 'Yes, Remove',
+          handler: () => {
+            this.removeItem(day);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  removeItem(day) {
+    this.days.remove(day);
   }
 
   cancel() {
@@ -55,41 +74,68 @@ export class EditPage {
 
   edit(day: any, i: number) {
 
-    let conf = confirm('Weet je zeker dat je dit onderdeel "' + day.Date + '" wilt wijzigen?');
-
-    if (conf == true) {
-      this.edit_day = day;
-      this.selectDay(i);
-      console.log('editting', day);
-    } else {
-      console.log('cancel editting', day);
-    }
+    console.log('edit', day);
+    let alert = this.alertCtrl.create({
+      title: 'Edit day',
+      message: 'Weet je zeker dat je dit onderdeel "' + day.Date + '" wilt wijzigen?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('editting abortified');
+          }
+        },
+        {
+          text: 'Yes, Edit',
+          handler: () => {
+            this.edit_day = day;
+            this.selectDay(i);
+            console.log('editting', day);
+          }
+        }
+      ]
+    });
+    alert.present();
 
   }
 
   save() {
-    let conf = confirm('Weet je zeker dat je dit onderdeel "' + this.edit_day.Date + '" wilt wijzigen?');
 
-    if (conf == true) {
-      try {
-        this
-          .db
-          .object('/Itinerary/' + this.edit_day.$key)
-          .set(this.edit_day)
-          .then(() => {
-            console.log('saving successfull');
-            alert('onderdeel opgeslagen');
-          })
-          .catch((error) => {
-            alert('An error while saving:\n' + error);
-          });
-      } catch (e) {
-        alert('An error while saving, sorry:/n' + e);
-      }
-    } else {
-      console.log('edit cancelled');
-      this.cancel();
-    }
+    let alert = this.alertCtrl.create({
+      title: 'Save day',
+      message: 'Weet je zeker dat je dit onderdeel "' + this.edit_day.Date + '" wilt wijzigen?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('editting abortified');
+          }
+        },
+        {
+          text: 'Yes, Save',
+          handler: () => {
+            try {
+              this
+                .db
+                .object('/Itinerary/' + this.edit_day.$key)
+                .set(this.edit_day)
+                .then(() => {
+                  console.log('saving successfull');
+                  this.cancel();
+                })
+                .catch((error) => {
+                  console.log('An error while saving:\n' + error);
+                });
+            } catch (e) {
+              console.log('An error while saving, sorry:/n' + e);
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
 
   }
 
@@ -115,14 +161,29 @@ export class EditPage {
           newday.StartTime = data.hour + ':' + data.minute;
           newday.DateOrder = parseFloat(('0000' + data.year).slice(-4) + ('00' + data.month).slice(-2) + ('00' + data.day).slice(-2) + ('00' + data.hour).slice(-2) + ('00' + data.minute).slice(-2));
           console.log('newday', newday);
-          let yesR = confirm('Wilt u een nieuwe dag maken met datum ' + newday.Date + ' om ' + newday.StartTime + ' uur?')
-          if (yesR === true) {
-            this.days.push(newday);
-            console.log('new');
-            alert('opgeslagen');
-          } else {
-            console.log('cancelled');
-          }
+
+          let alert = this.alertCtrl.create({
+            title: 'New day',
+            message: 'Wilt u een nieuwe dag maken met datum ' + newday.Date + ' om ' + newday.StartTime + ' uur?',
+            buttons: [
+              {
+                text: 'No',
+                role: 'cancel',
+                handler: () => {
+                  console.log('new day abortified');
+                }
+              },
+              {
+                text: 'Yes, Create',
+                handler: () => {
+                  this.days.push(newday);
+                  console.log('new');
+                }
+              }
+            ]
+          });
+          alert.present();
+
         }
       }
     });
